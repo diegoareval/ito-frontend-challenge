@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import PATHS from 'utils/paths';
 import useModal from 'hooks/useModal';
 import useQueryFetch from 'hooks/useQueryFetch';

@@ -14,7 +14,6 @@ export const StyleWrapper = styled.div`
     right: 0;
     width: 30%;
     height: 100%;
-    background: url('/img/gradient-right-dark.svg') no-repeat center center;
     background-size: contain;
     z-index: 1;
   }

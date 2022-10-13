@@ -1,19 +1,15 @@
-import { BsFillBookmarkFill } from 'react-icons/bs';
-
 import Text from 'components/Atoms/Text';
 import Title from 'components/Atoms/Title';
 import Login from 'components/Organisms/Login';
 
 import { StyleBrandWrapper, LoginWrapperStyle, StyleContent } from './style';
+import HeaderTitle from '../../Molecules/HeaderTitle';
 
 const LoginTemplate = () => {
   return (
     <LoginWrapperStyle>
       <StyleBrandWrapper>
-        <BsFillBookmarkFill />
-        <Text size={24} color="white" fontWeight="700">
-          Movie
-        </Text>
+        <HeaderTitle title="Movie" />
       </StyleBrandWrapper>
 
       <StyleContent>

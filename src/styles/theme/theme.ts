@@ -25,7 +25,7 @@ export const colors = {
   bgInput: '#111111',
   darkThree: '#333333',
   darkSix: '#666666',
-  gradient: 'linear-gradient(112deg, #AAFFEC -63.59%, #ff4ecd -20.3%, #0070F3 70.46%)',
+  gradient: 'linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%)',
   gradientText: 'linear-gradient(45deg, #7928ca -20%, #FF4ECD 100%);',
 };
 

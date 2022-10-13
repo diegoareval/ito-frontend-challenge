@@ -5,7 +5,6 @@ import { BsArrowsMove } from 'react-icons/bs';
 import { ROUTES } from 'routes/paths';
 import { useAuth } from 'context/auth';
 import useModal from 'hooks/useModal';
-import Text from 'components/Atoms/Text';
 
 import {
   StyleBrandWrapper,
@@ -17,6 +16,7 @@ import {
   StyleMenuWrapper,
   StyleNav,
 } from './style';
+import HeaderTitle from '../../Molecules/HeaderTitle';
 
 interface MenuProps {
   toggle?: () => void;
@@ -62,19 +62,13 @@ const Navbar = () => {
   const { isOpen, toggleModal } = useModal();
   const { logout, favoriteMovies } = useAuth();
 
-
-
   return (
     <StyleNav>
       <Link to={ROUTES.HOME}>
         <StyleBrandWrapper>
-          <BsArrowsMove />
-          <Text size={24} color="white" fontWeight="700">
-            Movie
-          </Text>
+          <HeaderTitle title="Movie" />
         </StyleBrandWrapper>
       </Link>
-
       <StyleFlex>
         <Menu
           logout={logout}
@@ -93,10 +87,7 @@ const Navbar = () => {
             </StyleMenuClose>
 
             <StyleBrandWrapper className="mb-3">
-              <BsArrowsMove />
-              <Text size={24} color="white" fontWeight="700">
-                Library
-              </Text>
+              <HeaderTitle title="Movie" />
             </StyleBrandWrapper>
 
             <Menu
