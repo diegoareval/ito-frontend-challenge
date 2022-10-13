@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BsFillBookmarkFill } from 'react-icons/bs';
+import { BsAlignBottom } from 'react-icons/bs';
 
 import { ROUTES } from 'routes/paths';
 import Text from 'components/Atoms/Text';
@@ -16,9 +16,9 @@ const NotFoundPage = () => {
   return (
     <LoginWrapperStyle>
       <StyleBrandWrapper>
-        <BsFillBookmarkFill />
+        <BsAlignBottom />
         <Text size={24} color="white" fontWeight="700">
-          Library
+          Movie
         </Text>
       </StyleBrandWrapper>
 
