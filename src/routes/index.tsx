@@ -11,6 +11,7 @@ import LoginPage from 'pages/login';
 import BooksPage from 'pages/home';
 import FavoritePage from 'pages/favoriteMovie';
 import NotFoundPage from 'pages/404';
+import MovieDetailPage from 'pages/detailPage';
 import {useAuth} from 'context/auth';
 
 import {ROUTES} from './paths';
@@ -54,6 +55,14 @@ const Routes = () => {
         element={
           <RequireAuth>
             <FavoritePage/>
+          </RequireAuth>
+        }
+      />
+      <Route
+        path={ROUTES.MOVIE_DETAIL}
+        element={
+          <RequireAuth>
+            <MovieDetailPage/>
           </RequireAuth>
         }
       />

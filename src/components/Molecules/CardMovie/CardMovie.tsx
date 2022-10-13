@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Text from 'components/Atoms/Text';
 import Button from 'components/Atoms/Button';
 import {
@@ -16,7 +17,7 @@ import {MovieItemProps} from '../../../interfaces/movie.interface.props';
 
 export const CardMovie = ({
   title,backdrop_path,
-       release_date,
+       release_date,id,
                            overview,
                            vote_average, favoriteScreen = false
 }: MovieItemProps) => {
@@ -35,9 +36,12 @@ export const CardMovie = ({
 
         <StyleBookContent>
           <StyleNav>
-            <Text fontWeight="600" size={20} lineHeight={30} title={title}>
-              {title}
-            </Text>
+            <Link to={`movie/${id}`}>
+              <Text fontWeight="600" size={20} lineHeight={30} title={title}>
+                {title}
+              </Text>
+            </Link>
+
             <Text size={16} lineHeight={26} color="darkNine">
               <b>Vote Average:</b> {vote_average}
             </Text>
@@ -55,7 +59,7 @@ export const CardMovie = ({
               !favoriteScreen &&  <Button loading={false} onClick={()=> setFavorite("favorites",{ title,backdrop_path,
                 release_date,
                 overview,
-                vote_average})}>
+                vote_average, id})}>
                 Save as Favorite
               </Button>
             }

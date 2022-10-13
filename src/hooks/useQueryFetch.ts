@@ -22,6 +22,7 @@ export default function useQueryFetch<T>({
 }: UserGetFetchProps) {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<movieResponse>({page: 0, results: [] });
+  const [detail, setDetail] = useState<MovieItemProps>({id: "", title: "", backdrop_path: "", overview: "", release_date: "", vote_average: "" });
   const [errors, setErrors] = useState<string | null>(null);
 
   const getData = useCallback(
@@ -40,8 +41,11 @@ export default function useQueryFetch<T>({
            ...info,
            results: filterInfo
          });
-       } else {
-         setData(info);
+       } else if(info.results){
+           setData(info);
+         } else {
+         const detail = info as any
+         setDetail(detail as MovieItemProps)
        }
 
       } catch (error: any) {
@@ -65,6 +69,6 @@ export default function useQueryFetch<T>({
     loading,
     data,
     errors,
-    getData,
+    getData, detail
   };
 }

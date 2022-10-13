@@ -3,4 +3,5 @@ export const ROUTES = {
   HOME: '/',
   FAVORITE: '/favorites',
   NOT_FOUND: '/404',
+  MOVIE_DETAIL: '/movie/:id'
 };
