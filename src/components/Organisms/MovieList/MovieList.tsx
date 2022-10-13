@@ -1,13 +1,12 @@
 import {  useState } from 'react';
 
-import PATHS from 'utils/paths';
 import useModal from 'hooks/useModal';
 import { Grid } from 'components/Molecules/Grid';
-import useMutationFetch from 'hooks/useMutationFetch';
 import ModalConfirm from 'components/Molecules/Modals/ModalConfirm';
-import CardMovie, { MovieItemProps } from 'components/Molecules/CardMovie';
+import CardMovie from 'components/Molecules/CardMovie';
 import { StyleWrapper } from './style';
 import Title from '../../Atoms/Title';
+import {MovieItemProps} from '../../../interfaces/movie.interface.props';
 
 interface BookProps {
   items: MovieItemProps[];
