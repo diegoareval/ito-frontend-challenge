@@ -12,7 +12,7 @@ const LoginTemplate = () => {
       <StyleBrandWrapper>
         <BsFillBookmarkFill />
         <Text size={24} color="white" fontWeight="700">
-          Library
+          Movie
         </Text>
       </StyleBrandWrapper>
 
