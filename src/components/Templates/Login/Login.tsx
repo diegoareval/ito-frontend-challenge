@@ -21,7 +21,7 @@ const LoginTemplate = () => {
           Login
         </Title>
         <Text color="white" align="center">
-          Insert your email for request book
+         Sign in and checkout your movies
         </Text>
 
         {/* login form */}
