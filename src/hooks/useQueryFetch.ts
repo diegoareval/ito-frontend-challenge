@@ -2,6 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {fetchInstanceMovieDb} from 'services/fetchInstance';
 import {MovieItemProps} from '../interfaces/movie.interface.props';
+import PATHS from '../utils/paths';
 
 type FilterType = { key: string; value: string }[];
 
@@ -31,17 +32,12 @@ export default function useQueryFetch<T>({
       try {
        const filter = opts && opts.filter? opts.filter[0] : {key: "", value: "" }
 
+        const pathUri = filter && filter.value? `${PATHS.SEARCH}?api_key=${import.meta.env.VITE_MOVIEDB_API_KEY}&query=${filter.value}`: `${path}?api_key=${import.meta.env.VITE_MOVIEDB_API_KEY}`
         const { data } = await fetchInstanceMovieDb.get<T>(
-          `${path}?api_key=${import.meta.env.VITE_MOVIEDB_API_KEY}`,
+          pathUri,
         );
         const info = data as movieResponse
-       if(filter && filter.value){
-         const filterInfo =  info.results.filter(result => result.title.includes(filter.value))
-         setData({
-           ...info,
-           results: filterInfo
-         });
-       } else if(info.results){
+         if(info.results){
            setData(info);
          } else {
          const detail = info as any

@@ -1,5 +1,6 @@
 const PATHS = {
-  POPULAR: '/popular',
+  POPULAR: '/movie/popular',
+  SEARCH: '/search/movie'
 }
 
 export default PATHS;
