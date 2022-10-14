@@ -8,6 +8,8 @@ import {MovieItemProps} from '../../../interfaces/movie.interface.props';
 import {CardMovie} from '../../Molecules/CardMovie';
 import {ROUTES} from '../../../routes/paths';
 import Button from '../../Atoms/Button';
+import MovieList from '../../Organisms/MovieList';
+import Title from '../../Atoms/Title';
 
 const DetailTemplate = () => {
   const {id} = useParams();
@@ -16,6 +18,10 @@ const DetailTemplate = () => {
 
   const {detail: data, loading, getData} = useQueryFetch<MovieItemProps[]>({
     path: `/movie/${id}`,
+  });
+
+  const {data: recommendations, loading: loadingRecommendations, getData: fetchRecommendations} = useQueryFetch<MovieItemProps[]>({
+    path: `/movie/${id}/recommendations`,
   });
 
   console.log(data)
@@ -52,6 +58,24 @@ const DetailTemplate = () => {
           overview={data.overview} backdrop_path={data.backdrop_path}/>
       ) : (
         <Loading/>
+      )}
+
+      <Title
+        size={30}
+        align="center"
+        color="gradientText"
+        style={{ marginTop: 50 }}
+      >
+        Recommendations:
+      </Title>
+
+      {!loading ? (
+        <MovieList
+          refetchData={getData}
+          items={recommendations.results ?? []}
+        />
+      ) : (
+        <Loading />
       )}
 
     </>
