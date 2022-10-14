@@ -39,6 +39,7 @@ interface AuthContextProps {
   logout: () => void;
   favoriteMovies: MovieItemProps[]
   setFavorite: (key: string, item: MovieItemProps) => void;
+  removeFromLocalStorage: (key: string, id: string) => void;
 }
 
 const defaultValue: AuthContextProps = {
@@ -48,7 +49,8 @@ const defaultValue: AuthContextProps = {
   favoriteMovies: [],
   login: () => Promise.resolve({ data: null, error: null }),
   logout: () => {},
-  setFavorite: (key: string, MovieItemProps)=> {}
+  setFavorite: (key: string, MovieItemProps)=> {},
+  removeFromLocalStorage: (key: string, id: string)=> {}
 };
 
 const AuthContext = createContext<AuthContextProps>(defaultValue);
@@ -73,7 +75,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     ]
   }, [user?.id])
 
-  const { favorites, setFavorite } = useLocalStorage("favorites");
+  const { favorites, setFavorite, removeFromLocalStorage } = useLocalStorage("favorites");
+  console.log("favorites", favorites)
 
   const { data, getData } = useQueryFetch<MovieItemProps[]>({
     path: PATHS.POPULAR,
@@ -121,10 +124,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       logout: onLogout,
       login: onLogin,
       setFavorite,
+      removeFromLocalStorage,
       loading: isLoading,
       favoriteMovies: favorites || [],
     };
-  }, [user, error, isLoading, onLogin, onLogout, data, getData]);
+  }, [user, error, isLoading, onLogin, onLogout, data,favorites, getData]);
 
   return <AuthContext.Provider value={output}>{children}</AuthContext.Provider>;
 };

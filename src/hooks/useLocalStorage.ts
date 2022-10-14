@@ -15,6 +15,13 @@ export const useLocalStorage = (key: string) => {
     return getStorageValue(key);
   });
 
+   const removeFromLocalStorage = (key: string, id: string) => {
+     const elements = getStorageValue(key)
+     const filterItems = elements.filter(el => el.id !== id);
+     setValue(filterItems);
+     localStorage.setItem(key, JSON.stringify(filterItems));
+  }
+
 const setFavorite = (key: string, item: MovieItemProps) => {
     const filterItems = favorites.filter(el => el.title === item.title);
     if(filterItems.length > 0) {
@@ -22,9 +29,9 @@ const setFavorite = (key: string, item: MovieItemProps) => {
       return; }
     const items = favorites.concat(item)
     localStorage.setItem(key, JSON.stringify(items));
-  setValue(items);
+    setValue(items);
 }
 
 
-  return {favorites, setFavorite};
+  return {favorites, setFavorite, removeFromLocalStorage};
 };

@@ -15,10 +15,13 @@ const DetailTemplate = () => {
   const {toggleModal} = useModal();
 
   const {detail: data, loading, getData} = useQueryFetch<MovieItemProps[]>({
-    path: `${id}`,
+    path: `/movie/${id}`,
   });
 
+  console.log(data)
+
   useEffect(() => {
+    getData().then()
   }, [id])
 
   const toggle = () => {

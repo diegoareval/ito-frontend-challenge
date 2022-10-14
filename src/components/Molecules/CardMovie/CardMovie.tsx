@@ -22,7 +22,7 @@ export const CardMovie = ({
                            vote_average, favoriteScreen = false
 }: MovieItemProps) => {
 
-  const { setFavorite } = useAuth();
+  const { setFavorite, removeFromLocalStorage } = useAuth();
   return (
     <StyleBookCard>
       <StyleBookBody>
@@ -36,7 +36,7 @@ export const CardMovie = ({
 
         <StyleBookContent>
           <StyleNav>
-            <Link to={`movie/${id}`}>
+            <Link to={`/movie/${id}`} style={{textDecoration: "none", cursor: "pointer"}}>
               <Text fontWeight="600" size={20} lineHeight={30} title={title}>
                 {title}
               </Text>
@@ -56,12 +56,15 @@ export const CardMovie = ({
               </Text>
             </StyleInfo>
             {
-              !favoriteScreen &&  <Button loading={false} onClick={()=> setFavorite("favorites",{ title,backdrop_path,
+              !favoriteScreen ?  <Button loading={false} onClick={()=> setFavorite("favorites",{ title,backdrop_path,
                 release_date,
                 overview,
                 vote_average, id})}>
                 Save as Favorite
-              </Button>
+              </Button>:
+                <Button loading={false} onClick={()=> removeFromLocalStorage("favorites", id)}>
+                  Remove from Favorite
+                </Button>
             }
 
 

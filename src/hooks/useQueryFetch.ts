@@ -36,7 +36,8 @@ export default function useQueryFetch<T>({
         const { data } = await fetchInstanceMovieDb.get<T>(
           pathUri,
         );
-        const info = data as movieResponse
+        const info = data as movieResponse;
+        console.log("info", info)
          if(info.results){
            setData(info);
          } else {
