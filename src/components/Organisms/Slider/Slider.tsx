@@ -8,6 +8,7 @@ import Title from '../../Atoms/Title';
 import {MovieItemProps} from '../../../interfaces/movie.interface.props';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import useWindowSize from '../../../hooks/useWindowSize';
 
 interface BookProps {
   items: MovieItemProps[];
@@ -15,13 +16,15 @@ interface BookProps {
   refetchData: () => void;
 }
 
-const SliderItem = ({ items, favoriteScreen = false, refetchData }: BookProps) => {
+const SliderItem = ({ items, favoriteScreen = false, refetchData: _ }: BookProps) => {
+  const { isBrowser, isTablet} = useWindowSize();
+  const quantityToShow = isBrowser? 3 : isTablet? 2 : 1
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 2
+    slidesToShow: quantityToShow,
+    slidesToScroll: 1
   };
 
   const { isOpen, toggleModal } = useModal();
@@ -40,7 +43,7 @@ const SliderItem = ({ items, favoriteScreen = false, refetchData }: BookProps) =
         ) : (
             <Slider {...settings}>
             {items.map((item) => (
-              <div style={{ margin: "30px"}}>
+              <div>
                 <Grid.Col key={item.id}>
                   <CardMovie
                     id={item.id}
