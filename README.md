@@ -33,6 +33,7 @@ npm run dev
 Now you can access the server at `http://localhost:3000`.
 
 
+[Live demo](https://ito-frontend-challenge.vercel.app/)
 
 [Linkedin](https://www.linkedin.com/in/diego2000avelar/)
 
