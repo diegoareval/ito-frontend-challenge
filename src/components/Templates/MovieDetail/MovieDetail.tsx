@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import useModal from 'hooks/useModal';
 import useQueryFetch from 'hooks/useQueryFetch';
@@ -8,8 +8,10 @@ import {MovieItemProps} from '../../../interfaces/movie.interface.props';
 import {CardMovie} from '../../Molecules/CardMovie';
 import {ROUTES} from '../../../routes/paths';
 import Button from '../../Atoms/Button';
-import MovieList from '../../Organisms/MovieList';
 import Title from '../../Atoms/Title';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import SliderItem from '../../Organisms/Slider';
 
 const DetailTemplate = () => {
   const {id} = useParams();
@@ -24,7 +26,6 @@ const DetailTemplate = () => {
     path: `/movie/${id}/recommendations`,
   });
 
-  console.log(data)
 
   useEffect(() => {
     getData().then()
@@ -63,20 +64,14 @@ const DetailTemplate = () => {
       <Title
         size={30}
         align="center"
-        color="gradientText"
+        color="white"
         style={{ marginTop: 50 }}
       >
         Recommendations:
       </Title>
 
-      {!loading ? (
-        <MovieList
-          refetchData={getData}
-          items={recommendations.results ?? []}
-        />
-      ) : (
-        <Loading />
-      )}
+      <SliderItem refetchData={getData}
+                  items={recommendations.results ?? []}/>
 
     </>
   );

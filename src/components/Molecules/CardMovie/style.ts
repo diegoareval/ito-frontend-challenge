@@ -3,7 +3,7 @@ import { colors, mediaQueries } from 'styles/theme/theme';
 
 export const StyleBookCard = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
   height: auto;
   flex: 1 1 auto;
   flex-direction: column;
@@ -94,6 +94,7 @@ export const StyleNav = styled.nav`
 export const StyleInfo = styled.div`
   display: flex;
   flex-wrap: nowrap;
+
   justify-content: flex-start;
   align-items: flex-start;
   padding-top: 8px;
