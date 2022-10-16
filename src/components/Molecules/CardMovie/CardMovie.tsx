@@ -11,9 +11,9 @@ import {
   StyleImage,
   StyleInfo,
 } from './style';
-// eslint-disable-next-line import/no-cycle
-import {useAuth} from '../../../context/auth';
+import {useAuth} from '../../../context/auth'
 import {MovieItemProps} from '../../../interfaces/movie.interface.props';
+
 
 export const CardMovie = ({
   title,backdrop_path,
@@ -21,8 +21,18 @@ export const CardMovie = ({
                            overview,
                            vote_average, favoriteScreen = false
 }: MovieItemProps) => {
-
   const { setFavorite, removeFromLocalStorage } = useAuth();
+
+  const markAsFavorite = (item: MovieItemProps)=> {
+    setFavorite("favorites", item);
+    alert('added as favorite!')
+  }
+
+  const removeAsFavorite = (id: string)=> {
+    removeFromLocalStorage("favorites", id)
+    alert('removed as favorite!')
+  }
+
   return (
     <StyleBookCard>
       <StyleBookBody>
@@ -56,13 +66,13 @@ export const CardMovie = ({
               </Text>
             </StyleInfo>
             {
-              !favoriteScreen ?  <Button loading={false} onClick={()=> setFavorite("favorites",{ title,backdrop_path,
+              !favoriteScreen ?  <Button loading={false} onClick={()=> markAsFavorite({ title,backdrop_path,
                 release_date,
                 overview,
                 vote_average, id})}>
                 Save as Favorite
               </Button>:
-                <Button loading={false} onClick={()=> removeFromLocalStorage("favorites", id)}>
+                <Button loading={false} onClick={()=> removeAsFavorite(id)}>
                   Remove from Favorite
                 </Button>
             }
